@@ -1,7 +1,7 @@
 class Solution {
     public char repeatedCharacter(String s) {
         ArrayList<Character> li=new ArrayList<>();
-        char c='a';
+        char c=' ';
         for(int i=0;i<s.length();i++){
             if(li.contains(s.charAt(i))){
                 c=s.charAt(i);
