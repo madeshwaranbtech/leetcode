@@ -1,22 +1,31 @@
 class Solution {
+    static int getval(char ch){
+        switch(ch){
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+        }
+        return 0;
+    }
     public int romanToInt(String s) {
         int ans=0;
-        HashMap<Character,Integer> hm=new HashMap<>();
-        hm.put('I',1);
-        hm.put('V',5);
-        hm.put('X',10);
-        hm.put('L',50);
-        hm.put('C',100);
-        hm.put('D',500);
-        hm.put('M',1000);
-        for(int i=0;i<s.length()-1;i++){
-            if(hm.get(s.charAt(i))<hm.get(s.charAt(i+1))){
-                ans-=hm.get(s.charAt(i));
+        int n=s.length();
+        for(int i=0;i<n;i++){
+            int cur=getval(s.charAt(i));
+            if(i+1<n){
+                int next=getval(s.charAt(i+1));
+                if(next>cur){
+                    ans+=(next-cur);
+                    i++;
+                    continue;
+                }
             }
-            else{
-                ans+=hm.get(s.charAt(i));
-            }
+            ans+=cur;
         }
-        return ans+hm.get(s.charAt(s.length()-1));
+        return ans;
     }
 }
